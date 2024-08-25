@@ -1,5 +1,6 @@
 using IProEventos.Persistence.Contratos;
 using Microsoft.EntityFrameworkCore;
+using ProEventos.API.DTOs.Mappings;
 using ProEventos.Application;
 using ProEventos.Application.Contratos;
 using ProEventos.Persistence;
@@ -11,7 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers()
                 .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-                
+
+builder.Services.AddAutoMapper(typeof(ProdutoDTOMappingProfile));       
 builder.Services.AddScoped<IEventoService, EventoService>();
 builder.Services.AddScoped<IGeralPersist, GeralPersist>();
 builder.Services.AddScoped<IEventoPersist, EventoPersist>();
